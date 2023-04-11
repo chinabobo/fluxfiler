@@ -1,3 +1,5 @@
+.
+
 # fluxfiler
 
 Fast and efficient file transfers over a network that includes server-side and client-side code for managing concurrent file transfers of large files with low latency and high throughput.
@@ -39,6 +41,32 @@ Fast and efficient file transfers over a network that includes server-side and c
 3. Retry of failed segments: The upload and download structures each have a RetryChannel, which is a channel type for segment structures. When a segment is uploaded or downloaded unsuccessfully, the segment is sent to this channel. A goroutine is started to read data from this channel and retry the failed segment.
 
 4. Concurrent upload or download: Concurrent upload and download is implemented using goroutines in Go. The goroutine is executed in units of file slices, and a channel is used to control the number of goroutines running. A synchronization signal is used to control whether all goroutines have completed.
+
+## File Structure
+
+```shell
+.
+├── LICENSE
+├── README.md
+├── client
+│   ├── common
+│   │   ├── common.go
+│   │   └── util.go
+│   ├── downloader
+│   │   └── downloader.go
+│   ├── go.mod
+│   ├── main.go
+│   └── uploader
+│       └── uploader.go
+└── server
+    ├── common
+    │   ├── common.go
+    │   └── util.go
+    ├── etc
+    │   └── config.json
+    ├── go.mod
+    └── main.go
+```
 
 ## Usage
 
